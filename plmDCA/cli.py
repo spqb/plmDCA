@@ -20,7 +20,7 @@ def main():
             SCRIPT = "train.py"
         case "sample":
             SCRIPT = "sample.py"
-	case _:
+        case _:
             print(f"Error: Invalid command '{COMMAND}'. Use 'train' or 'sample'.")
             sys.exit(1)
 
