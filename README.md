@@ -15,7 +15,7 @@ cd arDCA
 python -m pip install .
 ```
 ## Using the package
-We provide a [Colab notebook]([https://colab.research.google.com/drive/1z0z0-CT6iW6g2lZEYfnEVsyVfcexfrHX?usp=sharing](https://colab.research.google.com/drive/1nWzbLW3emB-vb92M6Gc9wZBPiyiT8czE?usp=sharing)) where it is shown hot to train and sample a `plmDCA` model.
+We provide a [Colab notebook](https://colab.research.google.com/drive/1nWzbLW3emB-vb92M6Gc9wZBPiyiT8czE?usp=sharing) where it is shown hot to train and sample a `plmDCA` model.
 
 Alternatively, one can install the package locally and run from the command line one of the two implemented routines:
 
