@@ -53,5 +53,4 @@ This package is open-sourced under the Apache License 2.0.
 
 ## Citation
 If you use this package in your research, please cite
-> Trinquier, J., Uguzzoni, G., Pagnani, A. et al. Efficient generative modeling of protein sequences using simple autoregressive models. Nat Commun 12, 5800 (2021).
 
