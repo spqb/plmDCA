@@ -10,7 +10,7 @@ def add_args_dca(parser : argparse.ArgumentParser) -> argparse.ArgumentParser:
     dca_args.add_argument("-l", "--label",        type=str,   default=None,         help="(Defaults to None). If provoded, adds a label to the output files inside the output folder.")
     dca_args.add_argument("--alphabet",           type=str,   default="protein",    help="(Defaults to protein). Type of encoding for the sequences. Choose among ['protein', 'rna', 'dna'] or a user-defined string of tokens.")
     dca_args.add_argument("--lr",                 type=float, default=0.1,          help="(Defaults to 0.1). Learning rate.")
-    dca_args.add_argument("--reg_h",              type=float, default=0.01,         help="(Defaults to 0.01). L2 regularization parameter for the fields.")
+    dca_args.add_argument("--reg_h",              type=float, default=0.0,          help="(Defaults to 0.0). L2 regularization parameter for the fields.")
     dca_args.add_argument("--reg_J",              type=float, default=0.01,         help="(Defaults to 0.01). L2 regularization parameter for the couplings.")
     dca_args.add_argument("--epsconv",            type=float, default=1e-2,         help="(Defaults to 1e-2). Convergence threshold on the loss function.")
     dca_args.add_argument("--nepochs",            type=int,   default=2000,         help="(Defaults to 2000). Maximum number of epochs allowed.")

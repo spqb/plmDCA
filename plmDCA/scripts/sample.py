@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 import torch
 import pandas as pd
+from tqdm import tqdm
 
 from adabmDCA.fasta import (
     get_tokens,
@@ -86,14 +87,24 @@ def main():
     print(f"Sampling {args.ngen} sequences...")
     r_f_i = []
     r_C_ij = []
+    pbar = tqdm(
+        total=args.nsweeps,
+        colour="red",
+        dynamic_ncols=True,
+        leave=True,
+        ascii="-#",
+    )
+    pbar.set_description("Pearson Cij: 0.0")
     for sweep in range(args.nsweeps):
         # Compute the statistics of the generated sequences
+        pbar.update(1)
         pi = get_freq_single_point(data=X)
         pij = get_freq_two_points(data=X)
         corr_one_site = torch.corrcoef(torch.stack([fi.flatten(), pi.flatten()]))[0, 1].item()
         corr_two_sites, _ = get_correlation_two_points(fi=fi, pi=pi, fij=fij, pij=pij)
         r_f_i.append(corr_one_site)
         r_C_ij.append(corr_two_sites)
+        pbar.set_description(f"Pearson Cij: {corr_two_sites:.3f}")
         if sweep in [50, 100, 200, 500, 1000]:
             write_fasta(
                 fname=folder / Path(f"{args.label}_samples_{sweep}.fasta"),
@@ -106,6 +117,7 @@ def main():
         # Perform one sweep
         residue_idxs = torch.randperm(L)
         X = model(X, residue_idxs, beta=args.beta)
+    pbar.close()
     
     # Save the log
     log = pd.DataFrame({

@@ -21,7 +21,7 @@ class plmDCA(nn.Module):
         self.L = L
         self.q = q
         self.h = nn.Parameter(torch.randn(L, q))
-        self.J = nn.Parameter(torch.randn(self.L, self.q, self.L, self.q))
+        self.J = nn.Parameter(torch.randn(self.L, self.q, self.L, self.q) * 1e-4)
         self.mask = nn.Parameter(torch.ones_like(self.J), requires_grad=False)
         for i in range(self.L):
             self.mask.data[i, :, i, :] = 0
@@ -137,7 +137,7 @@ class plmDCA(nn.Module):
             total=max_epochs,
             colour="red",
             dynamic_ncols=True,
-            leave=False,
+            leave=True,
             ascii="-#",
         )
         pbar.set_description(f"Loss: inf")
